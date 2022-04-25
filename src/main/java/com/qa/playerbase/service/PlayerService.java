@@ -1,39 +1,61 @@
 package com.qa.playerbase.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
 import java.util.List;
+
 import com.qa.playerbase.player.*;
+import com.qa.playerbase.repository.*;
 
 @Service
 public class PlayerService {
 	
-	private List<Player> players = new ArrayList<>();
+	private PlayerRepo repo;
+	
+	@Autowired
+	public PlayerService(PlayerRepo repo) {
+		super();
+		this.repo = repo;
+	}
 
-    public Player addlayer(Player player) {
-        // Add new Person
-        this.players.add(player);
-        // Return last added Person from List
-        return this.players.get(this.players.size() - 1);
+	//create
+    public Player create(Player player) {
+        return repo.saveAndFlush(player);
+    }
+    
+	//get all
+	public List<Player> getAll() {
+		return repo.findAll();
+	}
+	
+	//get id
+	public Player getById(long id) {
+		return repo.findById(id).get();
+	}
+    
+	//get user-name
+	public Player getByUsername(String username) {
+		return repo.findByUsername(username).get();
+	}
+	
+	//get email
+	public Player getByEmail(String email) {
+		return repo.findByEmail(email).get();
+	}
+	
+    //update
+    public Player update(long id, Player player) {
+        Player existing = repo.findById(id).get();
+        existing.setUsername(player.getUsername());
+        existing.setEmail(player.getEmail());
+        return repo.saveAndFlush(existing);
+        
     }
 
-    public List<Player> getAllPlayer() {
-        // Return the whole List
-        return this.players;
-    }
-
-    public Player updatePlayer(int id, Player player) {
-        // Remove existing Person with matching 'id'
-        this.players.remove(id);
-        // Add new Person in its place
-        this.players.add(id, player);
-        // Return updated Person from List
-        return this.players.get(id);
-    }
-
-    public Player removePlayer(int id) {
-        // Remove Person and return it
-        return this.players.remove(id);
+    //delete
+    public boolean delete(long id) {
+        repo.deleteById(null);
+        return !repo.existsById(id);
     }
 
 }

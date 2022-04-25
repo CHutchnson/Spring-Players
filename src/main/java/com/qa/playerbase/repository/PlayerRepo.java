@@ -7,5 +7,9 @@ import com.qa.playerbase.player.*;
 
 @Repository
 public interface PlayerRepo extends JpaRepository<Player, Long>  {
+	
+	//Custom query methods
+	public List<Player> findByUsername(String username);
+	public List<Player> findByEmail(String email);
 
 }

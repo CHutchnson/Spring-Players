@@ -54,7 +54,7 @@ public class PlayerService {
 
     //delete
     public boolean delete(long id) {
-        repo.deleteById(null);
+        repo.deleteById(id);
         return !repo.existsById(id);
     }
 

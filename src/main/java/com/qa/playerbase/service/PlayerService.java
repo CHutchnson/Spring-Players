@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
+import com.qa.playerbase.exception.PlayerNotFoundException;
 import com.qa.playerbase.player.*;
 import com.qa.playerbase.repository.*;
 
@@ -14,7 +15,6 @@ public class PlayerService {
 	
 	@Autowired
 	public PlayerService(PlayerRepo repo) {
-		super();
 		this.repo = repo;
 	}
 
@@ -30,17 +30,17 @@ public class PlayerService {
 	
 	//get id
 	public Player getById(long id) {
-		return repo.findById(id).get();
+		return repo.findById(id).orElseThrow(PlayerNotFoundException::new);
 	}
     
 	//get user-name
 	public Player getByUsername(String username) {
-		return repo.findByUsername(username).get();
+		return repo.findByUsername(username).orElseThrow(PlayerNotFoundException::new);
 	}
 	
 	//get email
 	public Player getByEmail(String email) {
-		return repo.findByEmail(email).get();
+		return repo.findByEmail(email).orElseThrow(PlayerNotFoundException::new);
 	}
 	
     //update

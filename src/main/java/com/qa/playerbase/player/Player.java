@@ -24,5 +24,12 @@ public class Player {
 	    
 	    @Column(unique = true, nullable = false)
 	    private String email;
+	    
+	    //used for creating and updating
+		public Player(String username, String email) {
+			super();
+			this.username = username;
+			this.email = email;
+		}
 
 }

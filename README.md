@@ -4,12 +4,12 @@ Complete CRUD project with Spring Boot, Java, Javascript and Axios
 
 This project is a springboot API that takes in data and return a playerbase list. It consists of one entity class, a rest controller class and a service class. There is also testing for the service and controller classes. It is compatible with h2 console, and SQL to generate databases. It can be tested with Postman to generate instances of the entity.
 
-Getting Started These insturctions will get you a copy of the project up and running on your local machine for development and testing purposes. 
+Getting Started These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
 
 Prerequisites What things you need to install the software and how to install them:
 Maven, Springboot, Lombok, (ALL INCLUDED IN THE POM FILE) 
 
-To run the application use the following command:
+To run the application using the jar file use the following command:
 java -jar Spring-Playerbase-0.0.1-SNAPSHOT
 
 This API is has full CRUD functionality.
